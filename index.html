@@ -55,6 +55,25 @@
                 height: 350px;
             }
         }
+        .metric-card, .education-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .metric-card:hover, .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -71,19 +90,23 @@
                 <p>This section provides a high-level overview of my most significant achievements, showcasing my ability to drive substantial financial and operational improvements. Interact with these cards to get a quick glimpse of the value I bring.</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                <div class="metric-card">
+                    <div class="icon text-green-500">💰</div>
                     <h3 class="text-3xl font-bold text-secondary">₹5 Cr/Month</h3>
                     <p class="mt-2 text-gray-600">Operational Cost Savings</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                <div class="metric-card">
+                    <div class="icon text-blue-500">📈</div>
                     <h3 class="text-3xl font-bold text-secondary">₹425 Cr</h3>
                     <p class="mt-2 text-gray-600">Revenue Growth Delivered</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                <div class="metric-card">
+                    <div class="icon text-purple-500">👥</div>
                     <h3 class="text-3xl font-bold text-secondary">20,000+</h3>
                     <p class="mt-2 text-gray-600">Influencers Onboarded</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                <div class="metric-card">
+                    <div class="icon text-red-500">🚀</div>
                     <h3 class="text-3xl font-bold text-secondary">200%</h3>
                     <p class="mt-2 text-gray-600">E-commerce Sales Surge</p>
                 </div>
@@ -122,6 +145,40 @@
             </div>
         </section>
 
+        <section id="education-awards" class="mb-12">
+            <h2 class="text-2xl font-bold text-primary mb-6 text-center">Education & Awards</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="education-card">
+                    <div>
+                        <div class="icon">🎓</div>
+                        <h3 class="text-xl font-semibold text-secondary">Bachelor of Technology, Engineering Physics</h3>
+                        <p class="text-gray-600">Delhi Technological University (DTU)</p>
+                        <p class="text-sm text-gray-500">2021</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-200 text-left">
+                        <h4 class="font-semibold text-center text-gray-700 mb-2">Key Roles & Honors</h4>
+                        <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                            <li>Vice Chancellor's Merit Fellowship</li>
+                            <li>USIP Internship Recipient</li>
+                            <li>Corporate Strategy Head, Physics Society</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="education-card">
+                    <div>
+                        <div class="icon">🥇</div>
+                        <h3 class="text-xl font-semibold text-secondary">Diploma in Engineering</h3>
+                        <p class="text-gray-600">Board of Technical Education, Lucknow</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <h4 class="font-semibold text-center text-gray-700 mb-2">Key Honors</h4>
+                        <p class="text-md font-bold text-amber-500">Gold Medalist</p>
+                        <p class="text-md text-gray-600 mt-1">NCC 'B' Certificate</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <footer class="text-center pt-8 border-t border-gray-300">
              <p class="text-gray-600">Gyanendra Kumar Prajapati | gyanendrakp302@gmail.com</p>
         </footer>
@@ -136,15 +193,16 @@
                     company: "Berry Alloys Ltd. - Captain Steel India Ltd. Group",
                     period: "Aug 2024 - Present",
                     details: [
-                        "Transitioned from consultant to a full-time leadership role by MD's personal invitation to unify strategic execution.",
-                        "Led business excellence initiatives across 5 manufacturing units, focusing on cost reduction and process streamlining.",
-                        "Established a monthly governance structure for operational reviews, tracking KPIs, and implementing cost-saving strategies.",
-                        "Architected and led the development of multiple key enterprise systems to drive digital transformation and operational efficiency."
+                        "I initially joined Berry Alloys Ltd. as a consultant through The Sherpas. Impressed by my performance, Berry’s MD personally invited me to join full-time and consolidate Berry and Sherpas' efforts toward a unified strategic execution model.",
+                        "Oversee operations and analytics for 5 manufacturing units, focusing on cost reduction and production optimization.",
+                        "Led monthly operational budget meetings, tracking KPIs, and implementing cost-saving strategies.",
+                        "Managed a team of 150+ employees, including direct supervision of 12 team members."
                     ],
                     achievements: {
                         "Cost Reduction": "Delivered ₹5 Crore/month in operational cost savings across 9 furnaces.",
-                        "Production Growth": "Increased Berry Alloys' production by 10% (to 16,500 TPM) and Gajanan Ferro's by 12.5% (to 4,500 TPM) within 4 months.",
-                        "Digital Architecture": "Architected key systems including: Charge Mix Optimizer, Plant Equipment/KPI Monitoring, Vehicle Tracking, a Central Data Repository for IPO planning, and a Document Management System for marketing & exports."
+                        "Production Growth": "Increased Berry Alloys' production from 16,000 to 18,500 TPM and Gajanan Ferro's from 4,000 to 4,800 TPM.",
+                        "Digital Architecture": "Led software development for real-time operational improvements, including Tapping Analysis, Breakdown Management, and Charge Mix Optimization.",
+                        "Market & IPO Strategy": "Executed the “India’s Lowest Cost Ferro Alloys Producer” IPO campaign and conducted pre-joining market research identifying 70% growth potential in key export markets (USA, Japan, Turkey)."
                     }
                 },
                 {
@@ -272,7 +330,7 @@
                     labels: ['Berry Alloys (Before)', 'Berry Alloys (After)', 'Gajanan Ferro (Before)', 'Gajanan Ferro (After)'],
                     datasets: [{
                         label: 'Production in TPM',
-                        data: [15000, 16500, 4000, 4500],
+                        data: [16000, 18500, 4000, 4800],
                         backgroundColor: ['#3E648C', '#1A3A5A', '#3E648C', '#1A3A5A'],
                         borderColor: ['#3E648C', '#1A3A5A', '#3E648C', '#1A3A5A'],
                         borderWidth: 1
