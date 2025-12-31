@@ -4,18 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive CV - Gyanendra Kumar Prajapati</title>
-    <!-- Chosen Palette: Strategic Blue & Neutral Gray -->
-    <!-- Application Structure Plan: The application is designed as a single-page interactive dashboard. The structure includes a prominent hero section, a "Key Impact Metrics" dashboard with clickable cards, an interactive career timeline, and data visualizations for key achievements. This dashboard approach was chosen over a linear format to immediately highlight the most impressive, quantifiable results to recruiters. The interactive timeline allows users to explore detailed experiences on-demand, making the information digestible and user-driven, which is more engaging than a traditional CV. -->
-    <!-- Visualization & Content Choices: 
-        - Report Info: Key quantifiable results (cost savings, revenue, etc.). Goal: Inform & Impress. Viz: Interactive "Key Metrics" cards. Interaction: Hover effects. Justification: Provides an immediate, high-impact summary. Method: HTML/CSS/JS.
-        - Report Info: Professional Experience. Goal: Organize & Detail. Viz: Interactive horizontal timeline. Interaction: Click to display details. Justification: More engaging and less overwhelming than a long text block. Method: HTML/CSS/JS.
-        - Report Info: Production increases and revenue generation. Goal: Compare & Show Growth. Viz: Bar charts. Interaction: Tooltips on hover. Justification: Clearly visualizes the scale of achievements. Library: Chart.js.
-        - Report Info: Core skills. Goal: Inform & Compare. Viz: Radar chart. Interaction: Tooltips on hover. Justification: Provides a quick, holistic view of capabilities. Library: Chart.js.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -31,15 +22,20 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
+        .timeline-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
         .timeline-item.active {
             background-color: #3E648C;
             color: white;
+            border-color: #3E648C;
         }
         .timeline-item.active .timeline-date {
             color: #F4F7F9;
         }
         .details-panel {
-            transition: all 0.5s ease-in-out;
+            transition: all 0.3s ease-in-out;
         }
         .chart-container {
             position: relative;
@@ -76,68 +72,97 @@
         }
     </style>
 </head>
-<body class="antialiased">
-    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+<body class="antialiased flex flex-col min-h-screen">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 flex-grow">
         
-        <header class="text-center mb-10">
+        <!-- HEADER with Photo and Contact -->
+        <header class="text-center mb-10 flex flex-col items-center">
+            <!-- Photo Section -->
+            <div class="relative w-32 h-32 mb-4">
+                <div class="w-full h-full rounded-full border-4 border-[#3E648C] overflow-hidden shadow-lg bg-white flex items-center justify-center">
+                     <!-- Using Thumbnail URL format which is often more reliable for embedding -->
+                     <img src="https://drive.google.com/thumbnail?id=1seKOCdo2KCz5zMBIDN1U8APKOdStS4bJ&sz=w1000" 
+                          alt="Gyanendra Kumar Prajapati" 
+                          class="w-full h-full object-cover"
+                          referrerpolicy="no-referrer"
+                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                     <div class="hidden w-full h-full items-center justify-center text-2xl font-bold text-[#1A3A5A]">GP</div>
+                </div>
+            </div>
+
             <h1 class="text-4xl md:text-5xl font-bold text-primary">Gyanendra Kumar Prajapati</h1>
-            <p class="text-xl text-secondary mt-2">Strategy & Business Excellence Professional</p>
+            <p class="text-xl text-secondary mt-2 font-medium">Head of Strategy & Business Excellence | Value Architect</p>
+            <p class="text-sm text-gray-500 mt-2 max-w-2xl">Bridging Boardroom Strategy with Shop-floor Reality. Expert in P&L Turnarounds, Digital Ecosystems (SAP), and Algorithmic Cost Leadership.</p>
+            
+            <!-- Contact Details -->
+            <div class="flex flex-wrap justify-center gap-4 mt-4 text-sm text-gray-700 font-semibold bg-white px-6 py-2 rounded-full shadow-sm border border-gray-100">
+                <a href="mailto:gyanendrakp302@gmail.com" class="hover:text-primary transition flex items-center gap-1">✉️ gyanendrakp302@gmail.com</a>
+                <span class="text-gray-300">|</span>
+                <span class="flex items-center gap-1">📞 +91 7880753531</span>
+                <span class="text-gray-300">|</span>
+                <span class="flex items-center gap-1">📞 +91 7054632047</span>
+            </div>
         </header>
 
         <section id="key-metrics" class="mb-12">
-            <h2 class="text-2xl font-bold text-primary mb-6 text-center">Key Impact Metrics</h2>
-             <div class="intro-paragraph mb-6 text-center max-w-3xl mx-auto">
-                <p>This section provides a high-level overview of my most significant achievements, showcasing my ability to drive substantial financial and operational improvements. Interact with these cards to get a quick glimpse of the value I bring.</p>
+            <h2 class="text-2xl font-bold text-primary mb-6 text-center">Strategic Impact Dashboard</h2>
+             <div class="intro-paragraph mb-6 text-center max-w-3xl mx-auto text-gray-600">
+                <p>Quantifiable value delivered across P&L, Operations, and Digital Transformation mandates.</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="metric-card">
+                <div class="metric-card border-t-4 border-green-500">
                     <div class="icon text-green-500">💰</div>
-                    <h3 class="text-3xl font-bold text-secondary">₹5 Cr/Month</h3>
-                    <p class="mt-2 text-gray-600">Operational Cost Savings</p>
+                    <h3 class="text-3xl font-bold text-secondary">₹60 Cr</h3>
+                    <p class="mt-2 text-gray-600 font-medium">Annualized Savings</p>
+                    <p class="text-xs text-gray-400 mt-1">Via Charge Mix Optimizer</p>
                 </div>
-                <div class="metric-card">
+                <div class="metric-card border-t-4 border-blue-500">
                     <div class="icon text-blue-500">📈</div>
                     <h3 class="text-3xl font-bold text-secondary">₹425 Cr</h3>
-                    <p class="mt-2 text-gray-600">Revenue Growth Delivered</p>
+                    <p class="mt-2 text-gray-600 font-medium">Revenue Delivered</p>
+                    <p class="text-xs text-gray-400 mt-1">Scaled from ₹318 Cr</p>
                 </div>
-                <div class="metric-card">
-                    <div class="icon text-purple-500">👥</div>
+                <div class="metric-card border-t-4 border-purple-500">
+                    <div class="icon text-purple-500">💻</div>
+                    <h3 class="text-3xl font-bold text-secondary">13+ Apps</h3>
+                    <p class="mt-2 text-gray-600 font-medium">Digital Ecosystem</p>
+                    <p class="text-xs text-gray-400 mt-1">SAP S/4HANA & Custom Tools</p>
+                </div>
+                <div class="metric-card border-t-4 border-amber-500">
+                    <div class="icon text-amber-500">👥</div>
                     <h3 class="text-3xl font-bold text-secondary">20,000+</h3>
-                    <p class="mt-2 text-gray-600">Influencers Onboarded</p>
-                </div>
-                <div class="metric-card">
-                    <div class="icon text-red-500">🚀</div>
-                    <h3 class="text-3xl font-bold text-secondary">200%</h3>
-                    <p class="mt-2 text-gray-600">E-commerce Sales Surge</p>
+                    <p class="mt-2 text-gray-600 font-medium">Influencer Network</p>
+                    <p class="text-xs text-gray-400 mt-1">Generated ₹40 Cr Revenue</p>
                 </div>
             </div>
         </section>
 
         <section id="career-journey" class="mb-12">
-            <h2 class="text-2xl font-bold text-primary mb-6 text-center">Interactive Career Journey</h2>
-            <div class="intro-paragraph mb-8 text-center max-w-3xl mx-auto">
-                <p>Explore my professional history by clicking on each role in the timeline below. This interactive format allows you to see the detailed responsibilities and key achievements for each position, providing a comprehensive view of my career progression and contributions.</p>
+            <h2 class="text-2xl font-bold text-primary mb-6 text-center">Interactive Leadership Journey</h2>
+            <div class="intro-paragraph mb-8 text-center max-w-3xl mx-auto text-gray-600">
+                <p>Select a role to view specific strategic mandates, proprietary IP developed, and P&L impact.</p>
             </div>
-            <div id="timeline" class="flex justify-center flex-wrap gap-2 mb-8">
+            
+            <div id="timeline" class="flex justify-center flex-wrap gap-3 mb-8">
+                <!-- Javascript will populate this -->
             </div>
-            <div id="details-panel" class="bg-white p-8 rounded-lg shadow-lg min-h-[300px]">
+            
+            <div id="details-panel" class="bg-white p-8 rounded-lg shadow-lg min-h-[300px] border-l-4 border-secondary transition-all duration-300">
+                <!-- Javascript will populate this -->
             </div>
         </section>
 
         <section id="visualizations" class="mb-12">
-            <h2 class="text-2xl font-bold text-primary mb-6 text-center">Achievement Visualizations</h2>
-             <div class="intro-paragraph mb-8 text-center max-w-3xl mx-auto">
-                <p>The following charts visually represent my core competencies and quantifiable successes. The radar chart offers a holistic view of my skills, while the bar charts highlight specific, impactful results from my projects. Hover over the charts to see detailed data.</p>
-            </div>
+            <h2 class="text-2xl font-bold text-primary mb-6 text-center">Executive Competency & Growth</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold text-center mb-4 text-primary">Core Competency Matrix</h3>
+                    <h3 class="text-xl font-bold text-center mb-4 text-primary">Leadership Competency Matrix</h3>
                     <div class="chart-container">
                         <canvas id="competencyChart"></canvas>
                     </div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold text-center mb-4 text-primary">Production Growth (TPM)</h3>
+                    <h3 class="text-xl font-bold text-center mb-4 text-primary">Production Scaling Impact (TPM)</h3>
                      <div class="chart-container">
                         <canvas id="productionChart"></canvas>
                     </div>
@@ -146,17 +171,17 @@
         </section>
 
         <section id="education-awards" class="mb-12">
-            <h2 class="text-2xl font-bold text-primary mb-6 text-center">Education & Awards</h2>
+            <h2 class="text-2xl font-bold text-primary mb-6 text-center">Education & Credentials</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <div class="education-card">
                     <div>
                         <div class="icon">🎓</div>
-                        <h3 class="text-xl font-semibold text-secondary">Bachelor of Technology, Engineering Physics</h3>
+                        <h3 class="text-xl font-semibold text-secondary">B.Tech, Engineering Physics</h3>
                         <p class="text-gray-600">Delhi Technological University (DTU)</p>
                         <p class="text-sm text-gray-500">2021</p>
                     </div>
                     <div class="mt-4 pt-4 border-t border-gray-200 text-left">
-                        <h4 class="font-semibold text-center text-gray-700 mb-2">Key Roles & Honors</h4>
+                        <h4 class="font-semibold text-center text-gray-700 mb-2">Honors</h4>
                         <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
                             <li>Vice Chancellor's Merit Fellowship</li>
                             <li>USIP Internship Recipient</li>
@@ -171,7 +196,7 @@
                         <p class="text-gray-600">Board of Technical Education, Lucknow</p>
                     </div>
                     <div class="mt-4 pt-4 border-t border-gray-200">
-                        <h4 class="font-semibold text-center text-gray-700 mb-2">Key Honors</h4>
+                        <h4 class="font-semibold text-center text-gray-700 mb-2">Recognition</h4>
                         <p class="text-md font-bold text-amber-500">Gold Medalist</p>
                         <p class="text-md text-gray-600 mt-1">NCC 'B' Certificate</p>
                     </div>
@@ -179,8 +204,9 @@
             </div>
         </section>
 
-        <footer class="text-center pt-8 border-t border-gray-300">
-             <p class="text-gray-600">Gyanendra Kumar Prajapati | gyanendrakp302@gmail.com</p>
+        <footer class="text-center pt-8 border-t border-gray-300 mt-auto">
+             <p class="text-gray-600 font-medium">Gyanendra Kumar Prajapati | Confidential Executive Portfolio</p>
+             <p class="text-sm text-gray-500 mt-1">Powered by Digital Strategy</p>
         </footer>
 
     </div>
@@ -189,63 +215,61 @@
         document.addEventListener('DOMContentLoaded', function() {
             const experienceData = [
                 {
-                    role: "Asst. General Manager, Strategy & Analytics",
-                    company: "Berry Alloys Ltd. - Captain Steel India Ltd. Group",
+                    role: "Head of Strategy & Business Excellence (Mandate)",
+                    company: "Berry Alloys Ltd. (Captain Steel Group)",
                     period: "Aug 2024 - Present",
                     details: [
-                        "I initially joined Berry Alloys Ltd. as a consultant through The Sherpas. Impressed by my performance, Berry’s MD personally invited me to join full-time and consolidate Berry and Sherpas' efforts toward a unified strategic execution model.",
-                        "Oversee operations and analytics for 5 manufacturing units, focusing on cost reduction and production optimization.",
-                        "Led monthly operational budget meetings, tracking KPIs, and implementing cost-saving strategies.",
-                        "Managed a team of 150+ employees, including direct supervision of 12 team members."
+                        "<strong>Strategic Mandate:</strong> Recruited by the Board to architect the 3-year strategic roadmap for 5 manufacturing units. Established the 'Digital & Cost Excellence' office.",
+                        "<strong>Proprietary IP (Charge Mix Optimizer):</strong> Architected an algorithm solving simultaneously for 4 constraints: <em>1) Technical Viability, 2) Chemical Compliance, 3) Cost Minimization, and 4) Maximum Recovery.</em>",
+                        "<strong>Digital Backbone:</strong> Serving as Project Lead with PwC for SAP S/4HANA Cloud (PP, QM, MM, PS, SD, PM). Delivered 13 custom apps to bridge ERP-to-Shopfloor gaps.",
+                        "<strong>IPO Readiness:</strong> Managed 'India’s Lowest Cost Producer' positioning strategy."
                     ],
                     achievements: {
-                        "Cost Reduction": "Delivered ₹5 Crore/month in operational cost savings across 9 furnaces.",
-                        "Production Growth": "Increased Berry Alloys' production from 16,000 to 18,500 TPM and Gajanan Ferro's from 4,000 to 4,800 TPM.",
-                        "Digital Architecture": "Led software development for real-time operational improvements, including Tapping Analysis, Breakdown Management, and Charge Mix Optimization.",
-                        "Market & IPO Strategy": "Executed the “India’s Lowest Cost Ferro Alloys Producer” IPO campaign and conducted pre-joining market research identifying 70% growth potential in key export markets (USA, Japan, Turkey)."
+                        "💰 Cost Leadership": "Delivered <strong>₹5 Crore/month</strong> (₹60 Cr/Year) in verified operational savings.",
+                        "🏭 Scale Up": "Orchestrated throughput increase: 16k→18.5k TPM (Berry) & 4k→4.8k TPM (Gajanan).",
+                        "🚀 Market Expansion": "Identified 70% growth potential in US/Japan export markets."
                     }
                 },
                 {
-                    role: "Front End Associate Consultant",
-                    company: "The Sherpas (Versatile HR Solution Pvt. Limited)",
+                    role: "Manufacturing Practice Lead",
+                    company: "The Sherpas (Versatile HR)",
                     period: "Dec 2023 - Jul 2024",
                     details: [
-                        "Led as a front-end consultant for major clients including Berry Alloy, Captain Steel, Jayshree Tea, and Rama Ply.",
-                        "Analyzed manufacturing processes to streamline operations and reduce costs.",
-                        "Examined balance sheets to diagnose business health and devised strategies for enhanced efficiency.",
-                        "Recommended tools and systems to automate processes, enhance productivity, and support growth objectives."
+                        "<strong>Practice Building:</strong> Built the firm’s manufacturing transformation offering from scratch.",
+                        "<strong>Financial Diagnosis:</strong> Conducted deep-dive balance sheet forensics to identify 'Hidden Factory' losses.",
+                        "<strong>Client Strategy:</strong> Diagnosed liquidity bottlenecks and presented actionable recovery roadmaps to Client Boards."
                     ],
-                    achievements: {}
+                    achievements: {
+                        "🤝 Revenue Generation": "Converted diagnostic audits into <strong>3 multi-year retainership contracts</strong> by monetizing IP."
+                    }
                 },
                 {
-                    role: "Business Strategist (Group Leader)",
+                    role: "Group Strategy Lead",
                     company: "Dorset Industries Pvt. Ltd.",
                     period: "Apr 2022 - Dec 2023",
                     details: [
-                        "Designed and implemented a 'pull-sales' strategy playbook, growing company revenue from ₹318 Cr to ₹425 Cr.",
-                        "Executed the 'Dorset Mitron' loyalty program, onboarding 20,000+ influencers and generating ₹40 Cr in revenue.",
-                        "Led pan-India Service CRM implementation, achieving 95%+ TAT in metro cities.",
-                        "Drove e-commerce strategy to deliver ₹2.5 Cr in revenue."
+                        "<strong>P&L Transformation:</strong> Designed and executed a 'pull-sales' strategy playbook.",
+                        "<strong>Ecosystem Design:</strong> Architected the 'Dorset Mitron' loyalty program as a defensible market moat.",
+                        "<strong>Operational Governance:</strong> Implemented Pan-India CRM to enforce service SLAs."
                     ],
                      achievements: {
-                        "Revenue Growth": "Grew company revenue from ₹318 Cr to ₹425 Cr.",
-                        "Channel Management": "Onboarded 20,000+ influencers & generated ₹40 Cr in revenue.",
-                        "Digital Transformation": "Achieved 95%+ service TAT in metro cities with new CRM."
+                        "📈 Revenue Scale": "Drove revenue from <strong>₹318 Cr to ₹425 Cr</strong> (33% Growth).",
+                        "👥 Channel Defense": "Onboarded <strong>20,000+ influencers</strong> generating ₹40 Cr incremental revenue.",
+                        "⚡ Service Ops": "Reduced Service TAT to <24hrs in key metro markets."
                     }
                 },
                 {
-                    role: "Business & Strategy Analyst",
-                    company: "Ozone India Group (Ozone Overseas Pvt. Ltd.)",
+                    role: "Strategy Analyst",
+                    company: "Ozone India Group",
                     period: "Mar 2021 - Apr 2022",
                     details: [
-                        "Developed regional sales playbooks that increased sales by 42% in South India.",
-                        "Functioned as a Data Analyst using SAP, CRM, and Biltrex to provide business insights to management.",
-                        "Collaborated with the Marketing Head to develop and execute successful marketing campaigns.",
-                        "Analyzed sales data, customer behavior, and market trends to identify opportunities for growth and optimization."
+                        "Developed regional sales playbooks (South India Market Entry).",
+                        "Functioned as Data Analyst using SAP, CRM, and Biltrex for C-Suite reporting.",
+                        "Analyzed customer behavior trends to optimize channel mix."
                     ],
                     achievements: {
-                        "Sales Growth": "Increased sales by 42% in South India with new regional playbooks.",
-                        "Digital Channel Growth": "Drove a 200% increase in e-commerce and modern trade sales volume within 9 months."
+                        "📊 Market Expansion": "Achieved <strong>42% sales increase</strong> in South India region.",
+                        "🛒 Digital Commerce": "Drove a 200% increase in modern trade sales volume."
                     }
                 }
             ];
@@ -253,10 +277,14 @@
             const timelineContainer = document.getElementById('timeline');
             const detailsPanel = document.getElementById('details-panel');
 
+            // Render Timeline Buttons
             experienceData.forEach((job, index) => {
                 const item = document.createElement('div');
-                item.className = 'timeline-item bg-white p-3 rounded-lg shadow-md text-center';
-                item.innerHTML = `<h4 class="font-semibold">${job.company}</h4><p class="text-sm timeline-date text-gray-500">${job.period}</p>`;
+                item.className = 'timeline-item bg-white px-6 py-4 rounded-lg shadow-md text-center border border-gray-100 flex-1 min-w-[220px] hover:border-blue-200';
+                item.innerHTML = `
+                    <h4 class="font-bold text-gray-800 text-sm">${job.company}</h4>
+                    <p class="text-xs timeline-date text-gray-500 mt-1 font-medium">${job.period}</p>
+                `;
                 item.addEventListener('click', () => {
                     document.querySelectorAll('.timeline-item').forEach(el => el.classList.remove('active'));
                     item.classList.add('active');
@@ -265,45 +293,76 @@
                 timelineContainer.appendChild(item);
             });
 
+            // Display Details Function
             function displayDetails(job) {
-                let achievementsHTML = '';
-                if (Object.keys(job.achievements).length > 0) {
-                    achievementsHTML += '<h4 class="text-lg font-semibold mt-6 mb-3 text-secondary">Key Achievements</h4><ul class="list-disc list-inside space-y-2">';
-                    for (const [key, value] of Object.entries(job.achievements)) {
-                        achievementsHTML += `<li><span class="font-semibold">${key}:</span> ${value}</li>`;
+                // Fade out
+                detailsPanel.style.opacity = '0';
+                
+                setTimeout(() => {
+                    let achievementsHTML = '';
+                    if (Object.keys(job.achievements).length > 0) {
+                        achievementsHTML += `
+                            <div class="mt-6 bg-blue-50 p-5 rounded-lg border border-blue-100">
+                                <h4 class="text-sm font-bold uppercase tracking-wide text-secondary mb-3 flex items-center gap-2">
+                                    <span>🚀</span> Strategic Impact Highlights
+                                </h4>
+                                <ul class="space-y-3">`;
+                        for (const [key, value] of Object.entries(job.achievements)) {
+                            achievementsHTML += `
+                                <li class="text-sm text-gray-700 flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-3">
+                                    <span class="font-bold text-primary min-w-[140px] bg-white px-2 py-1 rounded shadow-sm border border-blue-50 text-center text-xs sm:text-sm">${key}</span> 
+                                    <span class="py-1">${value}</span>
+                                </li>`;
+                        }
+                        achievementsHTML += '</ul></div>';
                     }
-                    achievementsHTML += '</ul>';
-                }
 
-                detailsPanel.innerHTML = `
-                    <h3 class="text-2xl font-bold text-primary">${job.role}</h3>
-                    <p class="text-md text-gray-500 mb-4">${job.company} | ${job.period}</p>
-                    <div class="border-t pt-4">
-                        <h4 class="text-lg font-semibold mb-3 text-secondary">Responsibilities</h4>
-                        <ul class="list-disc list-inside space-y-2">
-                            ${job.details.map(d => `<li>${d}</li>`).join('')}
-                        </ul>
-                        ${achievementsHTML}
-                    </div>
-                `;
+                    detailsPanel.innerHTML = `
+                        <div class="flex flex-col md:flex-row justify-between items-start mb-6 border-b border-gray-100 pb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary">${job.role}</h3>
+                                <p class="text-md text-gray-500 font-medium flex items-center gap-2 mt-1">
+                                    <span class="w-2 h-2 rounded-full bg-secondary"></span> ${job.company}
+                                </p>
+                            </div>
+                            <span class="mt-2 md:mt-0 px-4 py-1.5 bg-gray-100 text-gray-600 rounded-full text-xs font-bold border border-gray-200">${job.period}</span>
+                        </div>
+                        <div class="pt-2">
+                            <h4 class="text-sm font-bold uppercase tracking-wide text-secondary mb-3 flex items-center gap-2">
+                                <span>📋</span> Core Mandate & Execution
+                            </h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 leading-relaxed">
+                                ${job.details.map(d => `<li class="pl-2">${d}</li>`).join('')}
+                            </ul>
+                            ${achievementsHTML}
+                        </div>
+                    `;
+                    // Fade in
+                    detailsPanel.style.opacity = '1';
+                }, 200);
             }
 
-            document.querySelector('.timeline-item').click();
+            // Auto-click first item
+            if(document.querySelector('.timeline-item')) {
+                document.querySelector('.timeline-item').click();
+            }
 
+            // Charts
             const competencyCtx = document.getElementById('competencyChart').getContext('2d');
             new Chart(competencyCtx, {
                 type: 'radar',
                 data: {
-                    labels: ['Business Strategy', 'Data Analytics', 'Program Management', 'Digital Transformation', 'Team Leadership', 'Operations'],
+                    labels: ['Strategy & P&L', 'Data Analytics', 'SAP/Tech', 'Digital Trans.', 'Leadership', 'Operations'],
                     datasets: [{
-                        label: 'Skill Level',
-                        data: [9, 9, 8, 9, 8, 9],
+                        label: 'Proficiency Level',
+                        data: [9.5, 9, 8.5, 9, 9, 9],
                         backgroundColor: 'rgba(62, 100, 140, 0.2)',
                         borderColor: '#3E648C',
-                        pointBackgroundColor: '#3E648C',
+                        pointBackgroundColor: '#1A3A5A',
                         pointBorderColor: '#fff',
                         pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: '#3E648C'
+                        pointHoverBorderColor: '#3E648C',
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -312,14 +371,13 @@
                         r: {
                             angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
                             grid: { color: 'rgba(0, 0, 0, 0.1)' },
-                            pointLabels: { font: { size: 12 } },
+                            pointLabels: { font: { size: 11, family: 'Poppins', weight: '600' }, color: '#555' },
                             suggestedMin: 0,
-                            suggestedMax: 10
+                            suggestedMax: 10,
+                            ticks: { display: false }
                         }
                     },
-                    plugins: {
-                        legend: { display: false }
-                    }
+                    plugins: { legend: { display: false } }
                 }
             });
 
@@ -327,13 +385,12 @@
             new Chart(productionCtx, {
                 type: 'bar',
                 data: {
-                    labels: ['Berry Alloys (Before)', 'Berry Alloys (After)', 'Gajanan Ferro (Before)', 'Gajanan Ferro (After)'],
+                    labels: ['Berry (Old)', 'Berry (New)', 'Gajanan (Old)', 'Gajanan (New)'],
                     datasets: [{
                         label: 'Production in TPM',
                         data: [16000, 18500, 4000, 4800],
-                        backgroundColor: ['#3E648C', '#1A3A5A', '#3E648C', '#1A3A5A'],
-                        borderColor: ['#3E648C', '#1A3A5A', '#3E648C', '#1A3A5A'],
-                        borderWidth: 1
+                        backgroundColor: ['#cbd5e1', '#1A3A5A', '#cbd5e1', '#3E648C'],
+                        borderRadius: 4
                     }]
                 },
                 options: {
@@ -341,21 +398,18 @@
                     scales: {
                         y: {
                             beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return value / 1000 + 'k';
-                                }
-                            }
+                            grid: { display: false },
+                            ticks: { callback: function(value) { return value / 1000 + 'k'; } }
+                        },
+                        x: { 
+                            grid: { display: false },
+                            ticks: { font: { family: 'Poppins' } }
                         }
                     },
                     plugins: {
                         legend: { display: false },
                         tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return ` ${context.raw.toLocaleString()} TPM`;
-                                }
-                            }
+                            callbacks: { label: function(context) { return ` ${context.raw.toLocaleString()} TPM`; } }
                         }
                     }
                 }
