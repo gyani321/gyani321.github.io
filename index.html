@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive CV - Gyanendra Kumar Prajapati</title>
+    <!-- Chosen Palette: Strategic Blue & Neutral Gray -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -11,13 +13,29 @@
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #F4F7F9;
-            color: #333333;
+            color: #333;
         }
-        .bg-primary { background-color: #1A3A5A; }
         .text-primary { color: #1A3A5A; }
-        .bg-secondary { background-color: #3E648C; }
         .text-secondary { color: #3E648C; }
-        .accent-bg { background-color: #EBF5FF; }
+        .bg-primary { background-color: #1A3A5A; }
+        .bg-secondary { background-color: #3E648C; }
+        
+        .metric-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+        .metric-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
         .timeline-item {
             cursor: pointer;
             transition: all 0.3s ease;
@@ -27,60 +45,57 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         .timeline-item.active {
-            background-color: #3E648C;
+            background-color: #1A3A5A; /* Darker elite blue */
             color: white;
-            border-color: #3E648C;
+            border-color: #1A3A5A;
         }
         .timeline-item.active .timeline-date {
-            color: #F4F7F9;
+            color: #E2E8F0;
         }
+        
         .details-panel {
             transition: all 0.3s ease-in-out;
         }
+        
         .chart-container {
             position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
             height: 300px;
-            max-height: 350px;
+            width: 100%;
         }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-        .metric-card, .education-card {
-            background-color: white;
+        
+        .education-card {
+            background: white;
             padding: 1.5rem;
             border-radius: 0.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid #3E648C;
         }
-        .metric-card:hover, .education-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .icon {
-            font-size: 2rem;
+        .education-card .icon {
+            font-size: 1.5rem;
             margin-bottom: 0.5rem;
+            color: #3E648C;
+        }
+        
+        /* New Styles for Toolkit Section */
+        .skill-tag {
+            background-color: #EEF2F6;
+            color: #1A3A5A;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid #CBD5E1;
         }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
     <div class="container mx-auto p-4 sm:p-6 lg:p-8 flex-grow">
-        
+
         <!-- HEADER with Photo and Contact -->
         <header class="text-center mb-10 flex flex-col items-center">
             <!-- Photo Section -->
             <div class="relative w-32 h-32 mb-4">
                 <div class="w-full h-full rounded-full border-4 border-[#3E648C] overflow-hidden shadow-lg bg-white flex items-center justify-center">
-                     <!-- Using Thumbnail URL format which is often more reliable for embedding -->
                      <img src="https://drive.google.com/thumbnail?id=1seKOCdo2KCz5zMBIDN1U8APKOdStS4bJ&sz=w1000" 
                           alt="Gyanendra Kumar Prajapati" 
                           class="w-full h-full object-cover"
@@ -136,6 +151,48 @@
                 </div>
             </div>
         </section>
+        
+        <!-- NEW SECTION: Consulting Toolkit -->
+        <section id="toolkit" class="mb-12">
+            <h2 class="text-2xl font-bold text-primary mb-6 text-center">Executive Competency Toolkit</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Column 1 -->
+                    <div>
+                        <h3 class="text-md font-bold text-secondary mb-3 uppercase tracking-wider border-b pb-2">Strategy & Operations</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">Cost Transformation</span>
+                            <span class="skill-tag">Zero-Based Budgeting</span>
+                            <span class="skill-tag">PMO Leadership</span>
+                            <span class="skill-tag">Process Debottlenecking</span>
+                            <span class="skill-tag">Change Management</span>
+                        </div>
+                    </div>
+                    <!-- Column 2 -->
+                    <div>
+                        <h3 class="text-md font-bold text-secondary mb-3 uppercase tracking-wider border-b pb-2">Digital & Technology</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">SAP S/4HANA Cloud</span>
+                            <span class="skill-tag">Digital Twin</span>
+                            <span class="skill-tag">Constraint Modeling</span>
+                            <span class="skill-tag">Linear Programming</span>
+                            <span class="skill-tag">Algorithm Design</span>
+                        </div>
+                    </div>
+                    <!-- Column 3 -->
+                    <div>
+                        <h3 class="text-md font-bold text-secondary mb-3 uppercase tracking-wider border-b pb-2">Market & Growth</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">Go-to-Market Strategy</span>
+                            <span class="skill-tag">Channel Ecosystems</span>
+                            <span class="skill-tag">Pricing Strategy</span>
+                            <span class="skill-tag">Forensic Due Diligence</span>
+                            <span class="skill-tag">Post-Merger Integration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="career-journey" class="mb-12">
             <h2 class="text-2xl font-bold text-primary mb-6 text-center">Interactive Leadership Journey</h2>
@@ -185,14 +242,13 @@
                         <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
                             <li>Vice Chancellor's Merit Fellowship</li>
                             <li>USIP Internship Recipient</li>
-                            <li>Corporate Strategy Head, Physics Society</li>
                         </ul>
                     </div>
                 </div>
                 <div class="education-card">
                     <div>
-                        <div class="icon">🥇</div>
-                        <h3 class="text-xl font-semibold text-secondary">Diploma in Engineering</h3>
+                        <div class="icon">📜</div>
+                        <h3 class="text-xl font-semibold text-secondary">Diploma in Paint Technology</h3>
                         <p class="text-gray-600">Board of Technical Education, Lucknow</p>
                     </div>
                     <div class="mt-4 pt-4 border-t border-gray-200">
@@ -206,7 +262,7 @@
 
         <footer class="text-center pt-8 border-t border-gray-300 mt-auto">
              <p class="text-gray-600 font-medium">Gyanendra Kumar Prajapati | Confidential Executive Portfolio</p>
-             <p class="text-sm text-gray-500 mt-1">Powered by Digital Strategy</p>
+             <p class="text-sm text-gray-500 mt-1">Gyanendra Kumar Prajapati</p>
         </footer>
 
     </div>
@@ -220,14 +276,15 @@
                     period: "Aug 2024 - Present",
                     details: [
                         "<strong>Strategic Mandate:</strong> Recruited by the Board to architect the 3-year strategic roadmap for 5 manufacturing units. Established the 'Digital & Cost Excellence' office.",
-                        "<strong>Proprietary IP (Charge Mix Optimizer):</strong> Architected an algorithm solving simultaneously for 4 constraints: <em>1) Technical Viability, 2) Chemical Compliance, 3) Cost Minimization, and 4) Maximum Recovery.</em>",
-                        "<strong>Digital Backbone:</strong> Serving as Project Lead with PwC for SAP S/4HANA Cloud (PP, QM, MM, PS, SD, PM). Delivered 13 custom apps to bridge ERP-to-Shopfloor gaps.",
-                        "<strong>IPO Readiness:</strong> Managed 'India’s Lowest Cost Producer' positioning strategy."
+                        "<strong>PMO Leadership (SAP S/4HANA):</strong> Appointed Management Representative to steer the SAP implementation with PwC. Governed the deployment of 7 modules (<em>PP, QM, PM, PS, FICO, MM, SD</em>) and managed change for 150+ stakeholders.",
+                        "<strong>Algorithmic Cost Optimization:</strong> Engineered a constraint-based 'Charge Mix Optimizer' (Linear Programming) solving simultaneously for <em>Technical Viability, Chemical Compliance, Cost Minimization, and Maximum Recovery.</em>",
+                        "<strong>Quality Assurance Tech:</strong> Deployed proprietary 'Batch Analysis Tools' to reduce variance and optimize raw material inputs.",
+                        "<strong>IPO Readiness:</strong> Managed 'India’s Lowest Cost Producer' positioning strategy via rigorous Zero-Based Budgeting."
                     ],
                     achievements: {
-                        "💰 Cost Leadership": "Delivered <strong>₹5 Crore/month</strong> (₹60 Cr/Year) in verified operational savings.",
-                        "🏭 Scale Up": "Orchestrated throughput increase: 16k→18.5k TPM (Berry) & 4k→4.8k TPM (Gajanan).",
-                        "🚀 Market Expansion": "Identified 70% growth potential in US/Japan export markets."
+                        "💰 EBITDA Impact": "Delivered <strong>₹5 Crore/month</strong> (₹60 Cr/Year) in verified operational savings via Cost Leadership.",
+                        "🏭 Capacity Expansion": "Orchestrated throughput increase: 16k→18.5k TPM (Berry) & 4k→4.8k TPM (Gajanan).",
+                        "🚀 International GTM": "Identified 70% growth potential in US/Japan markets via strategic market research."
                     }
                 },
                 {
@@ -235,12 +292,12 @@
                     company: "The Sherpas (Versatile HR)",
                     period: "Dec 2023 - Jul 2024",
                     details: [
-                        "<strong>Practice Building:</strong> Built the firm’s manufacturing transformation offering from scratch.",
-                        "<strong>Financial Diagnosis:</strong> Conducted deep-dive balance sheet forensics to identify 'Hidden Factory' losses.",
-                        "<strong>Client Strategy:</strong> Diagnosed liquidity bottlenecks and presented actionable recovery roadmaps to Client Boards."
+                        "<strong>Practice Building:</strong> Built the firm’s manufacturing transformation offering from scratch, defining the consulting framework.",
+                        "<strong>Forensic Due Diligence:</strong> Conducted deep-dive balance sheet forensics to identify 'Hidden Factory' losses and working capital leaks.",
+                        "<strong>Turnaround Strategy:</strong> Diagnosed liquidity bottlenecks and presented actionable recovery roadmaps to Client Boards."
                     ],
                     achievements: {
-                        "🤝 Revenue Generation": "Converted diagnostic audits into <strong>3 multi-year retainership contracts</strong> by monetizing IP."
+                        "🤝 Commercial Success": "Converted diagnostic audits into <strong>3 multi-year retainership contracts</strong> by monetizing proprietary IP."
                     }
                 },
                 {
@@ -248,12 +305,12 @@
                     company: "Dorset Industries Pvt. Ltd.",
                     period: "Apr 2022 - Dec 2023",
                     details: [
-                        "<strong>P&L Transformation:</strong> Designed and executed a 'pull-sales' strategy playbook.",
+                        "<strong>P&L Transformation:</strong> Designed and executed a 'Pull-Sales' strategy playbook, shifting focus from channel push to consumer demand.",
                         "<strong>Ecosystem Design:</strong> Architected the 'Dorset Mitron' loyalty program as a defensible market moat.",
-                        "<strong>Operational Governance:</strong> Implemented Pan-India CRM to enforce service SLAs."
+                        "<strong>Operational Governance:</strong> Implemented Pan-India CRM to enforce service SLAs and improve Customer Lifetime Value (CLV)."
                     ],
-                     achievements: {
-                        "📈 Revenue Scale": "Drove revenue from <strong>₹318 Cr to ₹425 Cr</strong> (33% Growth).",
+                      achievements: {
+                        "📈 Revenue Scale": "Drove revenue from <strong>₹318 Cr to ₹425 Cr</strong> (33% Growth) via strategic channel realignment.",
                         "👥 Channel Defense": "Onboarded <strong>20,000+ influencers</strong> generating ₹40 Cr incremental revenue.",
                         "⚡ Service Ops": "Reduced Service TAT to <24hrs in key metro markets."
                     }
@@ -263,12 +320,12 @@
                     company: "Ozone India Group",
                     period: "Mar 2021 - Apr 2022",
                     details: [
-                        "Developed regional sales playbooks (South India Market Entry).",
-                        "Functioned as Data Analyst using SAP, CRM, and Biltrex for C-Suite reporting.",
-                        "Analyzed customer behavior trends to optimize channel mix."
+                        "<strong>Market Entry Strategy:</strong> Developed regional sales playbooks (South India) based on granular market segmentation.",
+                        "<strong>Decision Support Systems:</strong> Leveraged SAP, CRM, and Biltrex to build C-Suite dashboards for real-time monitoring.",
+                        "<strong>Customer Analytics:</strong> Analyzed behavioral trends to optimize the channel mix and improve ROI."
                     ],
                     achievements: {
-                        "📊 Market Expansion": "Achieved <strong>42% sales increase</strong> in South India region.",
+                        "📊 Market Expansion": "Achieved <strong>42% sales increase</strong> in South India region via data-driven targeting.",
                         "🛒 Digital Commerce": "Drove a 200% increase in modern trade sales volume."
                     }
                 }
@@ -366,7 +423,6 @@
                     }]
                 },
                 options: {
-                    maintainAspectRatio: false,
                     scales: {
                         r: {
                             angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
